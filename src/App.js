@@ -5,40 +5,38 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-import FeatureScreen from './pages/feature';
-import ContactUs from './pages/contact';
-import logo from './logo.svg';
-import './App.css';
+import Home from './pages/home';
+import About from './pages/about';
+import Stories from './pages/stories';
+import Contact from './pages/contact';
+import Login from './pages/login';
+import Signup from './pages/signup';
+import NotFound from './pages/notFound';
+import Header from './components/header';
+import Footer from './components/footer';
+
+//  import bootstrap css file here
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Router>
-          <Switch>
-            <Route path="/" exact>
-              <FeatureScreen />
-            </Route>
-            <Route path="/contacts" exact>
-              <ContactUs />
-            </Route>
-            <Redirect to="/" />
-          </Switch>
-        </Router>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/stories" component={Stories} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/login" component={Login} />
+          <Route path="/signup" component={Signup} exact />
+
+          <Redirect to="/404" component={NotFound} />
+        </Switch>
+        <Footer />
+      </Router>
+    </>
   );
 }
 
